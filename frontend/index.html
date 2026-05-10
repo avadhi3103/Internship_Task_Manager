@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Task Manager</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+</head>
+<body>
+
+  <!-- AUTH SECTION -->
+  <div id="auth-section" class="container">
+    <h1>Task Manager</h1>
+
+    <div class="card">
+      <h2 id="auth-title">Login</h2>
+      <div id="register-field" style="display:none">
+        <input type="text" id="username" placeholder="Username" />
+      </div>
+      <input type="email" id="email" placeholder="Email" />
+      <input type="password" id="password" placeholder="Password" />
+      <button id="auth-btn" onclick="handleAuth()">Login</button>
+      <p class="switch">Don't have an account? <span onclick="toggleAuth()">Register</span></p>
+    </div>
+  </div>
+
+  <!-- MAIN APP SECTION -->
+  <div id="app-section" class="container" style="display:none">
+
+    <div class="topbar">
+      <h1>My Tasks</h1>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+
+    <!-- ADD TASK -->
+    <div class="card">
+      <h2>Add Task</h2>
+      <input type="text" id="task-title" placeholder="Title" />
+      <input type="text" id="task-desc" placeholder="Description" />
+      <select id="task-priority">
+        <option value="low">Low Priority</option>
+        <option value="medium" selected>Medium Priority</option>
+        <option value="high">High Priority</option>
+      </select>
+      <select id="task-status">
+        <option value="pending" selected>Pending</option>
+        <option value="in_progress">In Progress</option>
+        <option value="completed">Completed</option>
+      </select>
+      <button onclick="addTask()">Add Task</button>
+    </div>
+
+    <!-- ANALYTICS -->
+    <div class="card analytics">
+      <h2>Analytics</h2>
+      <div class="stats">
+        <div class="stat"><span id="stat-total">0</span><p>Total</p></div>
+        <div class="stat"><span id="stat-completed">0</span><p>Completed</p></div>
+        <div class="stat"><span id="stat-pending">0</span><p>Pending</p></div>
+        <div class="stat"><span id="stat-pct">0%</span><p>Done</p></div>
+      </div>
+    </div>
+
+    <!-- TASK LIST -->
+    <div class="card">
+      <h2>Task List</h2>
+      <div id="task-list"></div>
+    </div>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
